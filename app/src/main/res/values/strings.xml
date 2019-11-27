@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Shakey</string>
+    <string name="title_activity_os">OSActivity</string>
+    <string name="title_activity_wechat">WechatActivity</string>
+    <string name="title_activity_alipay">AlipayActivity</string>
+    <string name="title_activity_didi">DidiActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_music">MusicActivity</string>
+    <string name="title_activity_shakey_settings">ShakeySettingsActivity</string>
+    <string name="title_activity_lock_screen">LockScreenActivity</string>
+</resources>
