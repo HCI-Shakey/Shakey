@@ -1,5 +1,6 @@
 package com.hci.shakey;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.Button;
 
 public class OSActivity extends AppCompatActivity {
 
@@ -18,16 +20,59 @@ public class OSActivity extends AppCompatActivity {
         setContentView(R.layout.activity_os);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setUpButtons();
     }
 
+    private void setUpButtons() {
+        Button buttonShakey = findViewById(R.id.button_shakey);
+        Button buttonWechat = findViewById(R.id.button_wechat);
+        Button buttonMusic = findViewById(R.id.button_music);
+        Button buttonAlipay = findViewById(R.id.button_alipay);
+        Button buttonDidi = findViewById(R.id.button_didi);
+        Button buttonMap = findViewById(R.id.button_map);
+
+        buttonShakey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OSActivity.this, ShakeySettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonWechat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OSActivity.this, WechatActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OSActivity.this, MusicActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonAlipay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OSActivity.this, AlipayActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonDidi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OSActivity.this, DidiActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OSActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 }
