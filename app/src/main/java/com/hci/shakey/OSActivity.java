@@ -18,7 +18,7 @@ import android.widget.Button;
 
 public class OSActivity extends AppCompatActivity {
 
-    boolean isShake;
+    boolean shaking;
     SensorManager sensorManager;
     ShakeMotionListener shakeMotionListener;
 
@@ -31,7 +31,7 @@ public class OSActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setUpButtons();
 
-        isShake = false;
+        shaking = false;
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new ShakeMotionListener();
     }
@@ -91,16 +91,16 @@ public class OSActivity extends AppCompatActivity {
     private class ShakeMotionListener implements SensorEventListener {
         @Override
         public void onSensorChanged(SensorEvent event) {
-            if (isShake) return;
+            if (shaking) return;
             float x = Math.abs(event.values[0]);
             float y = Math.abs(event.values[1]);
             float z = Math.abs(event.values[2]);
             if (x>19 || y>19 || z>19) {
-                isShake = true;
+                shaking = true;
                 vibrate(500);
                 Intent intent = new Intent(OSActivity.this, ShakeyFullActivity.class);
-                startActivity(intent);
-                isShake = false;//可能会出现问题 重复启动shakey
+                intent.putExtra("Environment", "OSActivity");
+                startActivityForResult(intent, GlobalIdentifiers.CALL_SHAKEY);
             }
         }
         @Override
@@ -127,5 +127,8 @@ public class OSActivity extends AppCompatActivity {
         vibrator.vibrate(milliseconds);
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == GlobalIdentifiers.CALL_SHAKEY) { shaking = false; }
+    }
 }
