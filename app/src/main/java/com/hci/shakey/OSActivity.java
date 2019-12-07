@@ -43,6 +43,7 @@ public class OSActivity extends AppCompatActivity {
         Button buttonAlipay = findViewById(R.id.button_alipay);
         Button buttonDidi = findViewById(R.id.button_didi);
         Button buttonMap = findViewById(R.id.button_map);
+        Button buttonLockScreen = findViewById(R.id.button_lock_screen);
 
         buttonShakey.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +84,13 @@ public class OSActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OSActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonLockScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OSActivity.this, LockScreenActivity.class);
                 startActivity(intent);
             }
         });
