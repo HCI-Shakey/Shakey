@@ -1,11 +1,7 @@
 package com.hci.shakey;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 
@@ -15,23 +11,10 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.os.Vibrator;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageView;
 
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static android.content.Intent.FLAG_RECEIVER_FOREGROUND;
-
-public class WeChatResultActivity extends AppCompatActivity{
+public class ResultActivity extends AppCompatActivity{
     boolean shaking = true;
     SensorManager sensorManager;
     private Context mContext = null;
@@ -40,7 +23,10 @@ public class WeChatResultActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wechat_result);
+        setContentView(R.layout.activity_result);
+        Intent intent = this.getIntent();
+        ImageView imv = (ImageView)findViewById(R.id.empty);
+        imv.setImageResource(intent.getIntExtra("src",R.drawable.wechat));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);

@@ -136,7 +136,7 @@ public class MusicActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "切换音乐播放状态",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
                 changePauseState();
@@ -150,6 +150,7 @@ public class MusicActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
+                toResult1();
                 popupWindow.dismiss();
             }
         });
@@ -160,6 +161,7 @@ public class MusicActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
+                toResult2();
                 popupWindow.dismiss();
             }
         });
@@ -179,6 +181,24 @@ public class MusicActivity extends AppCompatActivity {
             audioManager.abandonAudioFocus(null);
             isPauseMusic = false;
         }
+    }
+
+    //打开虚假界面-听歌识曲
+    public void  toResult1() {
+        Intent intent = new Intent();
+        intent.putExtra("src",R.drawable.wyy_tgsq);
+        intent.setClass(this, ResultActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
+
+    //打开虚假界面-推荐
+    public void  toResult2() {
+        Intent intent = new Intent();
+        intent.putExtra("src",R.drawable.wyy_tj);
+        intent.setClass(this, ResultActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
 }

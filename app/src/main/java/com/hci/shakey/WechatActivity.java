@@ -8,7 +8,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.AudioManager;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -141,7 +140,7 @@ public class WechatActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "扫一扫",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
                 toWeChatScanDirect();
@@ -152,7 +151,7 @@ public class WechatActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "返回界面",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
                 toWeChatDirect();
@@ -163,10 +162,10 @@ public class WechatActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "开发中",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
-                toWeChatResult();
+                toResult();
                 popupWindow.dismiss();
             }
         });
@@ -200,12 +199,12 @@ public class WechatActivity extends AppCompatActivity {
 
         }
     }
-    //直接打开虚假界面
-    public void  toWeChatResult() {
+    //打开虚假界面
+    public void  toResult() {
         Intent intent = new Intent();
-        intent.setClass(this, WeChatResultActivity.class);
+        intent.putExtra("src",R.drawable.wc_add);
+        intent.setClass(this, ResultActivity.class);
         startActivity(intent);
         this.finish();
     }
-
 }
