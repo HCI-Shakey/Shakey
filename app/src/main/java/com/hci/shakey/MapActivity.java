@@ -120,26 +120,6 @@ public class MapActivity extends AppCompatActivity {
         ((Button)button3).setText(init3);
         TextView textView1 = (TextView) contentView.findViewById(R.id.textView);
         textView1.setText("to do");
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
-            }
-        });
         final PopupWindow popupWindow = new PopupWindow(contentView,
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
@@ -150,6 +130,35 @@ public class MapActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return false;
+            }
+        });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
+                //todo
+                shaking = false;
+                popupWindow.dismiss();
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
+                //todo
+                shaking = false;
+                popupWindow.dismiss();
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
+                //todo
+                shaking = false;
+                popupWindow.dismiss();
             }
         });
         popupWindow.showAsDropDown(view);
