@@ -8,56 +8,85 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".OSActivity"
     tools:showIn="@layout/activity_os"
-    android:gravity="center">
+    android:gravity="top">
 
-    <Button
-        android:id="@+id/button_shakey"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Shakey"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
-    <Button
-        android:id="@+id/button_wechat"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+        <Button
+            android:id="@+id/button_shakey"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/shake"/>
+        <Button
+            android:id="@+id/button_wechat"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/wechat"/>
+        <Button
+            android:id="@+id/button_music"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/music"/>
+        <Button
+            android:id="@+id/button_alipay"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/alipay"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wechat"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
-    <Button
-        android:id="@+id/button_music"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/button_didi"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/didi"/>
+        <Button
+            android:id="@+id/button_map"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/map"/>
+        <Button
+            android:id="@+id/button_lock_screen"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/lockscreen"/>
+        <Button
+            android:id="@+id/button_call"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/call"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="music"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
-    <Button
-        android:id="@+id/button_alipay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alipay"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
-    <Button
-        android:id="@+id/button_didi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Didi"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
-    <Button
-        android:id="@+id/button_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Map"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
-    <Button
-        android:id="@+id/button_lock_screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOCKSCREEN"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_light"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/light" />
+    </LinearLayout>
 
 </LinearLayout>
+
