@@ -8,4 +8,5 @@
     <string name="title_activity_music">MusicActivity</string>
     <string name="title_activity_shakey_settings">ShakeySettingsActivity</string>
     <string name="title_activity_lock_screen">LockScreenActivity</string>
+    <string name="title_activity_try">TryActivity</string>
 </resources>

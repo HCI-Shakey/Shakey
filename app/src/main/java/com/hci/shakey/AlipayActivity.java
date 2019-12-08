@@ -16,21 +16,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Vibrator;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class AlipayActivity extends AppCompatActivity {
 
-    boolean shaking;
+    boolean shaking = true;
     SensorManager sensorManager;
     AlipayActivity.ShakeMotionListener shakeMotionListener;
+    private Context mContext = null;
+    public View view;
+    public String init1,init2,init3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alipay);
+        setContentView(R.layout.activity_wechat);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +54,8 @@ public class AlipayActivity extends AppCompatActivity {
         shaking = false;
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new AlipayActivity.ShakeMotionListener();
+        mContext = this;
+        view = findViewById(R.id.textView3);
     }
 
     private class ShakeMotionListener implements SensorEventListener {
@@ -58,7 +70,7 @@ public class AlipayActivity extends AppCompatActivity {
                 vibrate(500);
                 Intent intent = new Intent(AlipayActivity.this, ShakeyFloatActivity.class);
                 intent.putExtra("Environment", "AlipayActivity");
-                startActivityForResult(intent, GlobalIdentifiers.CALL_SHAKEY);
+                startActivityForResult(intent,GlobalIdentifiers.Alipay_reci);
             }
         }
         @Override
@@ -87,6 +99,59 @@ public class AlipayActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == GlobalIdentifiers.CALL_SHAKEY) { shaking = false; }
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == GlobalIdentifiers.Alipay_reci && shaking == true) {
+            init1 = data.getStringExtra("init1");
+            init2 = data.getStringExtra("init2");
+            init3 = data.getStringExtra("init3");
+            Log.v(init1,"I'm in onResult");
+            showPopupWindow(view);
+        }
+    }
+
+    private void showPopupWindow(View view) {
+        View contentView = LayoutInflater.from(mContext).inflate(R.layout.pop_window, null);
+        Button button = (Button) contentView.findViewById(R.id.button1);
+        ((Button)button).setText(init1);
+        Button button2 = (Button) contentView.findViewById(R.id.button2);
+        Log.v(init2,"I'm here");
+        ((Button)button2).setText(init2);
+        Button button3 = (Button) contentView.findViewById(R.id.button3);
+        ((Button)button3).setText(init3);
+        TextView textView1 = (TextView) contentView.findViewById(R.id.textView);
+        textView1.setText("to do");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
+            }
+        });
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+
+        popupWindow.setTouchable(true);
+
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
+        popupWindow.showAsDropDown(view);
     }
 }

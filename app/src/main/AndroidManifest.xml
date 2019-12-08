@@ -11,7 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShakeyFloatActivity"></activity>
+        <activity
+            android:name=".ShakeyFloatActivity"
+            android:theme="@style/MyTranslucentTheme"
+            android:parentActivityName=".OSActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hci.shakey.OSActivity" />
+        </activity>
+        <activity
+            android:name=".ShakeyFullActivity">
+        </activity>
         <activity
             android:name=".LockScreenActivity"
             android:label="@string/title_activity_lock_screen"
@@ -21,7 +31,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hci.shakey.OSActivity" />
         </activity>
-        <activity android:name=".ShakeyFullActivity" />
         <activity
             android:name=".ShakeySettingsActivity"
             android:label="@string/title_activity_shakey_settings"
