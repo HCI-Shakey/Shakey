@@ -55,7 +55,7 @@ public class MusicActivity extends AppCompatActivity {
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new MusicActivity.ShakeMotionListener();
         mContext = this;
-        view = findViewById(R.id.textView3);
+        view = findViewById(R.id.textViewmusic);
     }
 
     private class ShakeMotionListener implements SensorEventListener {
