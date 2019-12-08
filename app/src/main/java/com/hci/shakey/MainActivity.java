@@ -8,16 +8,22 @@ import androidx.fragment.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.iflytek.cloud.SpeechUtility;
 
 import com.hci.shakey.fragments.VoiceAssistantFragment;
 
-public class MainActivity extends AppCompatActivity implements VoiceAssistantFragment.OnFragmentInteractionListener {
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class MainActivity extends AppCompatActivity implements VoiceAssistantFragment.OnFragmentInteractionListener,VoiceAssistantFragment.CallBackValue{
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     VoiceAssistantFragment vaf;
+
+    private Timer mTimer; // 按钮被点击，声音命令中有输入的时候，计时器会被取消
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,22 @@ public class MainActivity extends AppCompatActivity implements VoiceAssistantFra
         vaf = new VoiceAssistantFragment();
         fragmentTransaction.add(R.id.voice_assistant,vaf);
         fragmentTransaction.commit();
+
+        // 开启计时任务
+        TimerTask timerTask = new TimerTask(){
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(MainActivity.this, "1s后延时任务执行了", Toast.LENGTH_SHORT).show();
+                        // TODO: 执行默认动作
+                    }
+                });
+            }
+        };
+        // 计时器等待一秒钟
+        mTimer.schedule(timerTask,1000);
     }
 
     private void mscInit (String serverUrl){
@@ -50,5 +72,12 @@ public class MainActivity extends AppCompatActivity implements VoiceAssistantFra
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void sendMessageValue(String message) {
+        if (message.contentEquals("hasSoundAction")) {
+            // 取消计时器
+        }
     }
 }

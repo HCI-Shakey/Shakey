@@ -103,7 +103,7 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
         @Override
         public void onBeginOfSpeech() {
             // 此回调表示：sdk内部录音机已经准备好了，用户可以开始语音输入
-            showTip("开始说话");
+            showTip("我在听");
         }
 
         @Override
@@ -161,10 +161,16 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
 
             mResultText.setText(resultBuffer.toString());
             mResultText.setSelection(mResultText.length());
+
+            commandInspect(resultBuffer.toString());
         }
 
         @Override
         public void onVolumeChanged(int volume, byte[] data) {
+            // 音量改变说明有语音输入
+            if (volume > 0) {
+                callBackValue.sendMessageValue("hasSoundAction");
+            }
             showTip("当前正在说话，音量大小：" + volume);
             Log.d(TAG, "返回音频数据："+data.length);
             mIV.getDrawable().setLevel((int)(((double)(volume))*10000/20));
@@ -218,6 +224,13 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+        callBackValue = (CallBackValue) getActivity();
+    }
+
+    private CallBackValue callBackValue;
+    //定义一个接口，向父activity传递信息。让“下一步”按钮可以被点击
+    public interface CallBackValue{
+        void sendMessageValue(String message);
     }
 
     @Override
@@ -267,5 +280,16 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
         mIat.setParameter(SpeechConstant.VAD_EOS,"1000");
         // 设置标点符号,设置为"0"返回结果无标点,设置为"1"返回结果有标点
         mIat.setParameter(SpeechConstant.ASR_PTT, "0");
+    }
+
+    // 检查语音输入结果中是否有命令词
+    private void commandInspect(String curstr) {
+        if (curstr.contains("打电话")) {
+
+        } else if (curstr.contains("打开手电筒")) {
+
+        } else {
+
+        }
     }
 }
