@@ -1,12 +1,14 @@
 package com.hci.shakey;
 
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -16,8 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Vibrator;
-import android.content.ComponentName;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -166,7 +166,7 @@ public class WechatActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
-                toWeChatDirect();
+                toWeChatResult();
                 popupWindow.dismiss();
             }
         });
@@ -201,11 +201,11 @@ public class WechatActivity extends AppCompatActivity {
         }
     }
     //直接打开虚假界面
-//    public void  toWeChatResult() {
-//        Intent intent = new Intent();
-//        intent.setClass(this, WeChatResultActivity.class);
-//        startActivity(intent);
-//        this.finish();
-//    }
+    public void  toWeChatResult() {
+        Intent intent = new Intent();
+        intent.setClass(this, WeChatResultActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
 
 }

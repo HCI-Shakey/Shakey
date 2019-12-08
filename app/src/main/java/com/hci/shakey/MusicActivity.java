@@ -7,6 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -138,6 +139,7 @@ public class MusicActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
+                changePauseState();
                 popupWindow.dismiss();
             }
         });
@@ -163,4 +165,20 @@ public class MusicActivity extends AppCompatActivity {
         });
         popupWindow.showAsDropDown(view);
     }
+
+    private boolean isPauseMusic = false;
+
+    public void changePauseState() {
+        AudioManager audioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
+        if(audioManager.isMusicActive()) {
+            audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+            isPauseMusic = true;
+            return;
+        }
+        if(isPauseMusic) {
+            audioManager.abandonAudioFocus(null);
+            isPauseMusic = false;
+        }
+    }
+
 }
