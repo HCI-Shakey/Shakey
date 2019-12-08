@@ -92,6 +92,15 @@
                 android:value="com.hci.shakey.OSActivity" />
         </activity>
         <activity
+            android:name=".WeChatResultActivity"
+            android:label="WeChatResultActivity"
+            android:parentActivityName=".OSActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hci.shakey.OSActivity" />
+        </activity>
+        <activity
             android:name=".OSActivity"
             android:label="@string/title_activity_os"
             android:parentActivityName=".MainActivity"
