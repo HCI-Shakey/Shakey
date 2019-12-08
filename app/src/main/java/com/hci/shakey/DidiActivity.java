@@ -138,6 +138,7 @@ public class DidiActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
+                toResult1();
                 popupWindow.dismiss();
             }
         });
@@ -148,6 +149,7 @@ public class DidiActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
+                toResult2();
                 popupWindow.dismiss();
             }
         });
@@ -162,5 +164,21 @@ public class DidiActivity extends AppCompatActivity {
             }
         });
         popupWindow.showAsDropDown(view);
+    }
+    //打开虚假界面-打车
+    public void  toResult1() {
+        Intent intent = new Intent();
+        intent.putExtra("src",R.drawable.dd_dc);
+        intent.setClass(this, ResultActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
+    //打开虚假界面-钱包
+    public void  toResult2() {
+        Intent intent = new Intent();
+        intent.putExtra("src",R.drawable.dd_qb);
+        intent.setClass(this, ResultActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 }

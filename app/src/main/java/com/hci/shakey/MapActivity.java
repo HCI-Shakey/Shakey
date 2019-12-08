@@ -138,6 +138,7 @@ public class MapActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
+                toResult();
                 popupWindow.dismiss();
             }
         });
@@ -163,4 +164,13 @@ public class MapActivity extends AppCompatActivity {
         });
         popupWindow.showAsDropDown(view);
     }
+    //打开虚假界面
+    public void  toResult() {
+        Intent intent = new Intent();
+        intent.putExtra("src",R.drawable.gd_home);
+        intent.setClass(this, ResultActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
+
 }

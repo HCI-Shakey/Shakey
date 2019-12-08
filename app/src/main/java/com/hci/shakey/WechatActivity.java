@@ -1,6 +1,7 @@
 package com.hci.shakey;
 
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -16,8 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Vibrator;
-import android.content.ComponentName;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -141,7 +140,7 @@ public class WechatActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "扫一扫",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
                 toWeChatScanDirect();
@@ -152,7 +151,7 @@ public class WechatActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "返回界面",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
                 toWeChatDirect();
@@ -163,10 +162,10 @@ public class WechatActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "开发中",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
-                toWeChatDirect();
+                toResult();
                 popupWindow.dismiss();
             }
         });
@@ -200,12 +199,12 @@ public class WechatActivity extends AppCompatActivity {
 
         }
     }
-    //直接打开虚假界面
-//    public void  toWeChatResult() {
-//        Intent intent = new Intent();
-//        intent.setClass(this, WeChatResultActivity.class);
-//        startActivity(intent);
-//        this.finish();
-//    }
-
+    //打开虚假界面
+    public void  toResult() {
+        Intent intent = new Intent();
+        intent.putExtra("src",R.drawable.wc_add);
+        intent.setClass(this, ResultActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
 }
