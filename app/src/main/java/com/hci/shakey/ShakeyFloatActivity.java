@@ -36,21 +36,21 @@ public class ShakeyFloatActivity extends AppCompatActivity {
                 intent_Didi.putExtra("init1", "Didi1");
                 intent_Didi.putExtra("init2", "Didi2");
                 intent_Didi.putExtra("init3", "Didi3");
-                setResult(GlobalIdentifiers.Alipay_reci, intent_Didi);
+                setResult(GlobalIdentifiers.Didi_reci, intent_Didi);
                 break;
             case "MapActivity":
                 Intent intent_Map = new Intent();
                 intent_Map.putExtra("init1", "Map1");
                 intent_Map.putExtra("init2", "Map2");
                 intent_Map.putExtra("init3", "Map3");
-                setResult(GlobalIdentifiers.Alipay_reci, intent_Map);
+                setResult(GlobalIdentifiers.Map_reci, intent_Map);
                 break;
             case "MusicActivity":
                 Intent intent_Music = new Intent();
                 intent_Music.putExtra("init1", "Music1");
                 intent_Music.putExtra("init2", "Music2");
                 intent_Music.putExtra("init3", "Music3");
-                setResult(GlobalIdentifiers.Alipay_reci, intent_Music);
+                setResult(GlobalIdentifiers.Music_reci, intent_Music);
                 break;
             default:
                 break;

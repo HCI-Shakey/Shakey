@@ -8,4 +8,58 @@
     tools:context=".ShakeySettingsActivity"
     tools:showIn="@layout/activity_shakey_settings">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_weight="1"
+            android:background="#59673AB7" />
+
+        <Spinner
+            android:id="@+id/spinnerwechat"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_weight="1"
+            android:background="#A403A9F4" />
+
+        <Spinner
+            android:id="@+id/spinneralipay"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_weight="1"
+            android:background="#59673AB7" />
+
+        <Spinner
+            android:id="@+id/spinnermap"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_weight="1"
+            android:background="#A403A9F4" />
+
+        <Spinner
+            android:id="@+id/spinnermusic"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_weight="1"
+            android:background="#59673AB7" />
+
+        <Spinner
+            android:id="@+id/spinnerdidi"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_weight="1"
+            android:background="#A403A9F4" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="99dp"
+            android:text="TextView" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

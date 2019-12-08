@@ -12,52 +12,42 @@
 
     <Button
         android:id="@+id/button_init0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="304dp"
+        android:layout_height="122dp"
+        android:layout_margin="5dp"
         android:text="init"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
+        android:textSize="15dp" />
+
     <Button
         android:id="@+id/button_init1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="304dp"
+        android:layout_height="122dp"
+        android:layout_margin="5dp"
         android:text="init"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
+        android:textSize="15dp" />
+
     <Button
         android:id="@+id/button_init2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="304dp"
+        android:layout_height="122dp"
+        android:layout_margin="5dp"
         android:text="init"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
+        android:textSize="15dp" />
+
     <Button
         android:id="@+id/button_init3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="304dp"
+        android:layout_height="122dp"
+        android:layout_margin="5dp"
         android:text="init"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
+        android:textSize="15dp" />
+
     <Button
         android:id="@+id/button_init4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="304dp"
+        android:layout_height="122dp"
+        android:layout_margin="5dp"
         android:text="init"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
-    <Button
-        android:id="@+id/button_init5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="init"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
-    <Button
-        android:id="@+id/button_init6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="init"
-        android:textSize="15dp"
-        android:layout_margin="5dp"/>
+        android:textSize="15dp" />
 
 </LinearLayout>

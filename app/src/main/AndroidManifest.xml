@@ -20,7 +20,13 @@
                 android:value="com.hci.shakey.OSActivity" />
         </activity>
         <activity
-            android:name=".ShakeyFullActivity">
+            android:name=".ShakeyFullActivity"
+            android:label="@string/title_activity_shakey_full"
+            android:parentActivityName=".OSActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hci.shakey.OSActivity" />
         </activity>
         <activity
             android:name=".LockScreenActivity"

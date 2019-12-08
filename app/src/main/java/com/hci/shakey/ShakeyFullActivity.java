@@ -22,11 +22,8 @@ public class ShakeyFullActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shakey_full);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        //添加返回按钮
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //setUpButtons();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     private void setUpButtons() {
@@ -35,59 +32,8 @@ public class ShakeyFullActivity extends AppCompatActivity {
         Button buttoninit2 = findViewById(R.id.button_init2);
         Button buttoninit3 = findViewById(R.id.button_init3);
         Button buttoninit4 = findViewById(R.id.button_init4);
-        Button buttoninit5 = findViewById(R.id.button_init5);
-        Button buttoninit6 = findViewById(R.id.button_init6);
-        /*prepare for use
-        buttonShakey.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OSActivity.this, ShakeySettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-        buttonWechat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OSActivity.this, WechatActivity.class);
-                startActivity(intent);
-            }
-        });
-        buttonMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OSActivity.this, MusicActivity.class);
-                startActivity(intent);
-            }
-        });
-        buttonAlipay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OSActivity.this, AlipayActivity.class);
-                startActivity(intent);
-            }
-        });
-        buttonDidi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OSActivity.this, DidiActivity.class);
-                startActivity(intent);
-            }
-        });
-        buttonMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OSActivity.this, MapActivity.class);
-                startActivity(intent);
-            }
-        });
-        buttonLockScreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OSActivity.this, LockScreenActivity.class);
-                startActivity(intent);
-            }
-        });*/
     }
+
     @Override
     protected void onPause() {
         //资源释放
