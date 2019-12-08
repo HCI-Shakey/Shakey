@@ -2,69 +2,134 @@ package com.hci.shakey;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ShakeyFloatActivity extends AppCompatActivity {
 
+    private String str = "init";
+    View view;
+    private Context mContext = null;
+    public String init1,init2,init3;
+    AppCompatActivity a1 = this;
+    boolean mark = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shakey_float);
         Intent intent_reci = getIntent();
-        String str = intent_reci.getStringExtra("Environment");
+        str = intent_reci.getStringExtra("Environment");
+        view =(TextView) findViewById(R.id.textViewfloat);
+        mContext = this;
         switch (str){
             case "WechatActivity":
-                Intent intent_get = new Intent();
-                intent_get.putExtra("init1", "wechat1");
-                intent_get.putExtra("init2", "wechat2");
-                intent_get.putExtra("init3", "wechat3");
-                setResult(GlobalIdentifiers.Wechat_reci, intent_get);
+                init1 = "wechat";
+                init2 = "wechat";
+                init3 = "wechat";
                 break;
             case "AlipayActivity":
-                Intent intent_Alipay = new Intent();
-                intent_Alipay.putExtra("init1", "Alipay1");
-                intent_Alipay.putExtra("init2", "Alipay2");
-                intent_Alipay.putExtra("init3", "Alipay3");
-                setResult(GlobalIdentifiers.Alipay_reci, intent_Alipay);
+                init1 = "wechat";
+                init2 = "wechat";
+                init3 = "wechat";
                 break;
             case "DidiActivity":
-                Intent intent_Didi = new Intent();
-                intent_Didi.putExtra("init1", "Didi1");
-                intent_Didi.putExtra("init2", "Didi2");
-                intent_Didi.putExtra("init3", "Didi3");
-                setResult(GlobalIdentifiers.Didi_reci, intent_Didi);
+                init1 = "wechat";
+                init2 = "wechat";
+                init3 = "wechat";
                 break;
             case "MapActivity":
-                Intent intent_Map = new Intent();
-                intent_Map.putExtra("init1", "Map1");
-                intent_Map.putExtra("init2", "Map2");
-                intent_Map.putExtra("init3", "Map3");
-                setResult(GlobalIdentifiers.Map_reci, intent_Map);
+                init1 = "wechat";
+                init2 = "wechat";
+                init3 = "wechat";
                 break;
             case "MusicActivity":
-                Intent intent_Music = new Intent();
-                intent_Music.putExtra("init1", "Music1");
-                intent_Music.putExtra("init2", "Music2");
-                intent_Music.putExtra("init3", "Music3");
-                setResult(GlobalIdentifiers.Music_reci, intent_Music);
+                init1 = "wechat";
+                init2 = "wechat";
+                init3 = "wechat";
                 break;
             default:
                 break;
         }
-        finish();
     }
 
-    /*@Override
-    public void onBackPressed() {
-        //        super.onBackPressed();//不能够有该行代码，否则返回崩溃
-        Intent intent = new Intent();
-        intent.putExtra("init1", "wechat11");
-        intent.putExtra("init2", "wechat22");
-        setResult(3, intent);
-        finish();
-    }*/
+    public void onWindowFocusChanged(boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if (!hasFocus) {
+            // Activity失去焦点时不获取 update by bianmaoran on v2.3.1
+            return;
+        }
+        if(mark == true) {
+            a1.finish();
+            return;
+        }
+        Log.v(init1,"I'm miaomiaomiao");
+        mark = true;
+        showPopupWindow(view);
+    }
+    private void showPopupWindow(View view) {
+        View contentView = LayoutInflater.from(mContext).inflate(R.layout.pop_window, null);
+        Button button = (Button) contentView.findViewById(R.id.button1);
+        ((Button)button).setText(init1);
+        Button button2 = (Button) contentView.findViewById(R.id.button2);
+        Log.v(init2,"I'm here");
+        ((Button)button2).setText(init2);
+        Button button3 = (Button) contentView.findViewById(R.id.button3);
+        ((Button)button3).setText(init3);
+        TextView textView1 = (TextView) contentView.findViewById(R.id.textView);
+        textView1.setText("to do");
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+
+        popupWindow.setTouchable(true);
+
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
+                //todo
+                mark = true;
+                popupWindow.dismiss();
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
+                //todo
+                mark = true;
+                popupWindow.dismiss();
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
+                //todo
+                mark = true;
+                popupWindow.dismiss();
+            }
+        });
+        popupWindow.showAsDropDown(view);
+    }
 }

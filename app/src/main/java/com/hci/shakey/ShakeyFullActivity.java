@@ -24,6 +24,46 @@ public class ShakeyFullActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shakey_full);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Button buttoninit0 = findViewById(R.id.button_init0);
+        Button buttoninit1 = findViewById(R.id.button_init1);
+        Button buttoninit2 = findViewById(R.id.button_init2);
+        Button buttoninit3 = findViewById(R.id.button_init3);
+        Button buttoninit4 = findViewById(R.id.button_init4);
+        buttoninit0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShakeyFullActivity.this, WechatActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttoninit1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShakeyFullActivity.this, AlipayActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttoninit2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShakeyFullActivity.this, MusicActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttoninit3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShakeyFullActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttoninit4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShakeyFullActivity.this, DidiActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setUpButtons() {

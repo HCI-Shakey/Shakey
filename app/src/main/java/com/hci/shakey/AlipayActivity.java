@@ -31,9 +31,6 @@ public class AlipayActivity extends AppCompatActivity {
     boolean shaking = true;
     SensorManager sensorManager;
     AlipayActivity.ShakeMotionListener shakeMotionListener;
-    private Context mContext = null;
-    public View view;
-    public String init1,init2,init3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +51,6 @@ public class AlipayActivity extends AppCompatActivity {
         shaking = false;
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new AlipayActivity.ShakeMotionListener();
-        mContext = this;
-        view = findViewById(R.id.textViewalipay);
     }
 
     private class ShakeMotionListener implements SensorEventListener {
@@ -71,6 +66,7 @@ public class AlipayActivity extends AppCompatActivity {
                 Intent intent = new Intent(AlipayActivity.this, ShakeyFloatActivity.class);
                 intent.putExtra("Environment", "AlipayActivity");
                 startActivityForResult(intent,GlobalIdentifiers.Alipay_reci);
+                shaking = false;
             }
         }
         @Override
@@ -95,82 +91,5 @@ public class AlipayActivity extends AppCompatActivity {
     private void vibrate(long milliseconds) {
         Vibrator vibrator = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
         vibrator.vibrate(milliseconds);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == GlobalIdentifiers.Alipay_reci && shaking == true) {
-            init1 = data.getStringExtra("init1");
-            init2 = data.getStringExtra("init2");
-            init3 = data.getStringExtra("init3");
-            Log.v(init1,"I'm in onResult");
-            showPopupWindow(view);
-        }
-    }
-
-    private void showPopupWindow(View view) {
-        View contentView = LayoutInflater.from(mContext).inflate(R.layout.pop_window, null);
-        Button button = (Button) contentView.findViewById(R.id.button1);
-        ((Button)button).setText(init1);
-        Button button2 = (Button) contentView.findViewById(R.id.button2);
-        Log.v(init2,"I'm here");
-        ((Button)button2).setText(init2);
-        Button button3 = (Button) contentView.findViewById(R.id.button3);
-        ((Button)button3).setText(init3);
-        TextView textView1 = (TextView) contentView.findViewById(R.id.textView);
-        textView1.setText("to do");
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-
-        popupWindow.setTouchable(true);
-
-        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return false;
-            }
-        });
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "button is pressed",Toast.LENGTH_SHORT).show();
-                //todo
-                shaking = false;
-                toResult();
-                popupWindow.dismiss();
-            }
-        });
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
-                //todo
-                shaking = false;
-                popupWindow.dismiss();
-            }
-        });
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
-                //todo
-                shaking = false;
-                popupWindow.dismiss();
-            }
-        });
-        popupWindow.showAsDropDown(view);
-    }
-    //打开虚假界面
-    public void  toResult() {
-        Intent intent = new Intent();
-        intent.putExtra("src",R.drawable.ali_fkm);
-        intent.setClass(this, ResultActivity.class);
-        startActivity(intent);
-        this.finish();
     }
 }

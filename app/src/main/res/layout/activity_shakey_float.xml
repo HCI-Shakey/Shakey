@@ -7,12 +7,11 @@
     tools:context=".ShakeyFloatActivity">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/textViewfloat"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
         android:layout_marginTop="291dp"
         android:layout_marginEnd="182dp"
-        android:text="float"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 package com.hci.shakey;
 
 import android.app.Service;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -27,17 +26,11 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static android.content.Intent.FLAG_RECEIVER_FOREGROUND;
-
 public class WechatActivity extends AppCompatActivity {
 
     boolean shaking = true;
     SensorManager sensorManager;
     WechatActivity.ShakeMotionListener shakeMotionListener;
-    private Context mContext = null;
-    public View view;
-    public String init1,init2,init3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +51,6 @@ public class WechatActivity extends AppCompatActivity {
         shaking = false;
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new WechatActivity.ShakeMotionListener();
-        mContext = this;
-        view = findViewById(R.id.textView3);
     }
 
     private class ShakeMotionListener implements SensorEventListener {
@@ -75,6 +66,7 @@ public class WechatActivity extends AppCompatActivity {
                 Intent intent = new Intent(WechatActivity.this, ShakeyFloatActivity.class);
                 intent.putExtra("Environment", "WechatActivity");
                 startActivityForResult(intent,GlobalIdentifiers.Wechat_reci);
+                shaking = false;
             }
         }
         @Override
@@ -99,112 +91,5 @@ public class WechatActivity extends AppCompatActivity {
     private void vibrate(long milliseconds) {
         Vibrator vibrator = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
         vibrator.vibrate(milliseconds);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-            if(resultCode == GlobalIdentifiers.Wechat_reci && shaking == true) {
-                init1 = data.getStringExtra("init1");
-                init2 = data.getStringExtra("init2");
-                init3 = data.getStringExtra("init3");
-                Log.v(init1,"I'm in onResult");
-                showPopupWindow(view);
-            }
-            //todo
-    }
-
-    private void showPopupWindow(View view) {
-        View contentView = LayoutInflater.from(mContext).inflate(R.layout.pop_window, null);
-        Button button = (Button) contentView.findViewById(R.id.button1);
-        ((Button)button).setText(init1);
-        Button button2 = (Button) contentView.findViewById(R.id.button2);
-        Log.v(init2,"I'm here");
-        ((Button)button2).setText(init2);
-        Button button3 = (Button) contentView.findViewById(R.id.button3);
-        ((Button)button3).setText(init3);
-        TextView textView1 = (TextView) contentView.findViewById(R.id.textView);
-        textView1.setText("to do");
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-
-        popupWindow.setTouchable(true);
-
-        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return false;
-            }
-        });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "扫一扫",Toast.LENGTH_SHORT).show();
-                //todo
-                shaking = false;
-                toWeChatScanDirect();
-                popupWindow.dismiss();
-            }
-        });
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "返回界面",Toast.LENGTH_SHORT).show();
-                //todo
-                shaking = false;
-                toWeChatDirect();
-                popupWindow.dismiss();
-            }
-        });
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "开发中",Toast.LENGTH_SHORT).show();
-                //todo
-                shaking = false;
-                toResult();
-                popupWindow.dismiss();
-            }
-        });
-        popupWindow.showAsDropDown(view);
-    }
-    //直接打开微信扫码界面
-    public void toWeChatScanDirect() {
-        try {
-            Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.tencent.mm", "com.tencent.mm.ui.LauncherUI"));
-            intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
-            intent.setFlags(FLAG_RECEIVER_FOREGROUND | FLAG_ACTIVITY_CLEAR_TOP);//335544320
-            intent.setAction("android.intent.action.VIEW");
-            startActivity(intent);
-            this.finish();
-        } catch (Exception e) {
-        }
-    }
-    //直接打开微信界面
-    public void  toWeChatDirect() {
-        try {
-            Intent intent = new Intent();
-            ComponentName cmp=new ComponentName("com.tencent.mm","com.tencent.mm.ui.LauncherUI");
-            intent.setAction(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_LAUNCHER);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setComponent(cmp);
-            startActivity(intent);
-            this.finish();
-        } catch (Exception e) {
-
-        }
-    }
-    //打开虚假界面
-    public void  toResult() {
-        Intent intent = new Intent();
-        intent.putExtra("src",R.drawable.wc_add);
-        intent.setClass(this, ResultActivity.class);
-        startActivity(intent);
-        this.finish();
     }
 }

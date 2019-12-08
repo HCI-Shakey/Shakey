@@ -7,7 +7,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.AudioManager;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,9 +31,6 @@ public class MusicActivity extends AppCompatActivity {
     boolean shaking = true;
     SensorManager sensorManager;
     MusicActivity.ShakeMotionListener shakeMotionListener;
-    private Context mContext = null;
-    public View view;
-    public String init1,init2,init3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +51,6 @@ public class MusicActivity extends AppCompatActivity {
         shaking = false;
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new MusicActivity.ShakeMotionListener();
-        mContext = this;
-        view = findViewById(R.id.textViewmusic);
     }
 
     private class ShakeMotionListener implements SensorEventListener {
@@ -72,6 +66,7 @@ public class MusicActivity extends AppCompatActivity {
                 Intent intent = new Intent(MusicActivity.this, ShakeyFloatActivity.class);
                 intent.putExtra("Environment", "MusicActivity");
                 startActivityForResult(intent,GlobalIdentifiers.Music_reci);
+                shaking = false;
             }
         }
         @Override
@@ -97,108 +92,4 @@ public class MusicActivity extends AppCompatActivity {
         Vibrator vibrator = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
         vibrator.vibrate(milliseconds);
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == GlobalIdentifiers.Music_reci && shaking == true) {
-            init1 = data.getStringExtra("init1");
-            init2 = data.getStringExtra("init2");
-            init3 = data.getStringExtra("init3");
-            Log.v(init1,"I'm in onResult");
-            showPopupWindow(view);
-        }
-    }
-
-    private void showPopupWindow(View view) {
-        View contentView = LayoutInflater.from(mContext).inflate(R.layout.pop_window, null);
-        Button button = (Button) contentView.findViewById(R.id.button1);
-        ((Button)button).setText(init1);
-        Button button2 = (Button) contentView.findViewById(R.id.button2);
-        Log.v(init2,"I'm here");
-        ((Button)button2).setText(init2);
-        Button button3 = (Button) contentView.findViewById(R.id.button3);
-        ((Button)button3).setText(init3);
-        TextView textView1 = (TextView) contentView.findViewById(R.id.textView);
-        textView1.setText("to do");
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-
-        popupWindow.setTouchable(true);
-
-        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return false;
-            }
-        });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "切换音乐播放状态",Toast.LENGTH_SHORT).show();
-                //todo
-                shaking = false;
-                changePauseState();
-                popupWindow.dismiss();
-            }
-        });
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
-                //todo
-                shaking = false;
-                toResult1();
-                popupWindow.dismiss();
-            }
-        });
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
-                //todo
-                shaking = false;
-                toResult2();
-                popupWindow.dismiss();
-            }
-        });
-        popupWindow.showAsDropDown(view);
-    }
-
-    private boolean isPauseMusic = false;
-
-    public void changePauseState() {
-        AudioManager audioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
-        if(audioManager.isMusicActive()) {
-            audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-            isPauseMusic = true;
-            return;
-        }
-        if(isPauseMusic) {
-            audioManager.abandonAudioFocus(null);
-            isPauseMusic = false;
-        }
-    }
-
-    //打开虚假界面-听歌识曲
-    public void  toResult1() {
-        Intent intent = new Intent();
-        intent.putExtra("src",R.drawable.wyy_tgsq);
-        intent.setClass(this, ResultActivity.class);
-        startActivity(intent);
-        this.finish();
-    }
-
-    //打开虚假界面-推荐
-    public void  toResult2() {
-        Intent intent = new Intent();
-        intent.putExtra("src",R.drawable.wyy_tj);
-        intent.setClass(this, ResultActivity.class);
-        startActivity(intent);
-        this.finish();
-    }
-
 }

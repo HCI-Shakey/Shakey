@@ -3,7 +3,6 @@
     package="com.hci.shakey">
 
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -93,17 +92,8 @@
                 android:value="com.hci.shakey.OSActivity" />
         </activity>
         <activity
-            android:name=".ResultActivity"
-            android:label="ResultActivity"
-            android:parentActivityName=".OSActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.hci.shakey.OSActivity" />
-        </activity>
-        <activity
-            android:name=".DialActivity"
-            android:label="DialActivity"
+            android:name=".WeChatResultActivity"
+            android:label="WeChatResultActivity"
             android:parentActivityName=".OSActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

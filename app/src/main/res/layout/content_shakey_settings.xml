@@ -15,50 +15,67 @@
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_width="255dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="#59673AB7" />
+            android:background="#0D000000" />
 
         <Spinner
             android:id="@+id/spinnerwechat"
-            android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_width="255dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="#A403A9F4" />
+            android:background="#D5D5D3" />
 
         <Spinner
             android:id="@+id/spinneralipay"
-            android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_width="255dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="#59673AB7" />
+            android:background="#0D000000" />
 
         <Spinner
             android:id="@+id/spinnermap"
-            android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_width="255dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="#A403A9F4" />
+            android:background="#D5D5D3" />
 
         <Spinner
             android:id="@+id/spinnermusic"
-            android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_width="255dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="#59673AB7" />
+            android:background="#0D000000" />
 
         <Spinner
             android:id="@+id/spinnerdidi"
-            android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_width="255dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="#A403A9F4" />
+            android:background="#D5D5D3" />
 
         <TextView
             android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="99dp"
+            android:layout_width="255dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:textSize="30sp"
+            android:textAlignment="center"
             android:text="TextView" />
 
     </LinearLayout>

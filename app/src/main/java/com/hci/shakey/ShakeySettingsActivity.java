@@ -71,7 +71,6 @@ public class ShakeySettingsActivity extends AppCompatActivity {
         SimpleAdapter adaptermap = new SimpleAdapter(this, getDate(map), R.layout.spinner, new String[]{"title", "name"}, new int[]{R.id.text1, R.id.text2});
         SimpleAdapter adaptermusic = new SimpleAdapter(this, getDate(music), R.layout.spinner, new String[]{"title", "name"}, new int[]{R.id.text1, R.id.text2});
         SimpleAdapter adapterdidi = new SimpleAdapter(this, getDate(didi), R.layout.spinner, new String[]{"title", "name"}, new int[]{R.id.text1, R.id.text2});
-
         //把适配器绑定给控件
         spinner.setAdapter(adapter);
         spinnerwechat.setAdapter(adapterwechat);
