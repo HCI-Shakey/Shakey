@@ -55,7 +55,7 @@ public class MapActivity extends AppCompatActivity {
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new MapActivity.ShakeMotionListener();
         mContext = this;
-        view = findViewById(R.id.textView3);
+        view = findViewById(R.id.textViewmap);
     }
 
     private class ShakeMotionListener implements SensorEventListener {

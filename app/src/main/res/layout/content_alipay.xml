@@ -8,6 +8,16 @@
     tools:context=".AlipayActivity"
     tools:showIn="@layout/activity_alipay">
 
+    <TextView
+        android:id="@+id/textViewalipay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="166dp"
+        android:layout_marginBottom="309dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

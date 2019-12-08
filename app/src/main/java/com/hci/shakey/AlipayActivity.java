@@ -55,7 +55,7 @@ public class AlipayActivity extends AppCompatActivity {
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new AlipayActivity.ShakeMotionListener();
         mContext = this;
-        view = findViewById(R.id.textView3);
+        view = findViewById(R.id.textViewalipay);
     }
 
     private class ShakeMotionListener implements SensorEventListener {

@@ -55,7 +55,7 @@ public class DidiActivity extends AppCompatActivity {
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new DidiActivity.ShakeMotionListener();
         mContext = this;
-        view = findViewById(R.id.textView3);
+        view = findViewById(R.id.textViewdidi);
     }
 
     private class ShakeMotionListener implements SensorEventListener {
