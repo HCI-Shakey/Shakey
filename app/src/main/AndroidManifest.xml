@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-feature android:name="android.hardware.Camera" />
+    <uses-feature android:name="android.hardware.camera2" />
+    <uses-feature android:name="android.hardware.camera2.CameraManager" />
 
     <application
         android:allowBackup="true"
@@ -104,6 +109,15 @@
         <activity
             android:name=".DialActivity"
             android:label="DialActivity"
+            android:parentActivityName=".OSActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hci.shakey.OSActivity" />
+        </activity>
+        <activity
+            android:name=".FlashLightActivity"
+            android:label="FlashLightActivity"
             android:parentActivityName=".OSActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
