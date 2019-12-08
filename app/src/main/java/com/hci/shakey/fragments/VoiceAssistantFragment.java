@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.hci.shakey.R;
@@ -38,7 +39,7 @@ import java.util.LinkedHashMap;
  * Activities that contain this fragment must implement the
  * {@link VoiceAssistantFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link VoiceAssistantFragment#newInstance} factory method to
+ * Use the {@link VoiceAssistantFragment} factory method to
  * create an instance of this fragment.
  */
 public class VoiceAssistantFragment extends Fragment implements View.OnClickListener {
@@ -48,6 +49,7 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
     private EditText mResultText;
     private Button startBtn;
     private Toast mToast;
+    private ImageView mIV;
     private String resultType = "json";
     private StringBuffer buffer = new StringBuffer();
     private boolean cyclic = false;//音频流识别是否循环调用
@@ -75,6 +77,8 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
         mResultText = v.findViewById(R.id.text_result);
         startBtn = v.findViewById(R.id.start_btn);
         startBtn.setOnClickListener(this);
+        mIV = v.findViewById(R.id.microphone);
+        mIV.getDrawable().setLevel(5400);
         return v;
     }
     /**
@@ -163,6 +167,7 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
         public void onVolumeChanged(int volume, byte[] data) {
             showTip("当前正在说话，音量大小：" + volume);
             Log.d(TAG, "返回音频数据："+data.length);
+            mIV.getDrawable().setLevel((int)(((double)(volume))*10000/20));
         }
 
         @Override
@@ -192,6 +197,7 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
                 mIatResults.clear();
                 setParam();
                 // 不显示听写对话框
+                if (mIat.isListening()) mIat.stopListening();
                 ret = mIat.startListening(mRecognizerListener);
                 if (ret != ErrorCode.SUCCESS) {
                     showTip("听写失败,错误码：" + ret+",请点击网址https://www.xfyun.cn/document/error-code查询解决方案");
