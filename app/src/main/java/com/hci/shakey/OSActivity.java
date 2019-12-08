@@ -48,7 +48,7 @@ public class OSActivity extends AppCompatActivity {
         buttonShakey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OSActivity.this, FlashLightActivity.class);
+                Intent intent = new Intent(OSActivity.this, ShakeyFullActivity.class);
                 startActivity(intent);
             }
         });
