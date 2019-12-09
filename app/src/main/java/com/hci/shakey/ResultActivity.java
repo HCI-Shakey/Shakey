@@ -42,6 +42,5 @@ public class ResultActivity extends AppCompatActivity{
         shaking = false;
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         mContext = this;
-        view = findViewById(R.id.textView3);
     }
 }
