@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.hci.shakey.support.LocalDataBase;
 import com.iflytek.cloud.SpeechUtility;
 
 import com.hci.shakey.fragments.VoiceAssistantFragment;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements VoiceAssistantFra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LocalDataBase.initialize(this);
         // 创建语音配置对象
         mscInit(null);
 
@@ -41,21 +43,26 @@ public class MainActivity extends AppCompatActivity implements VoiceAssistantFra
         fragmentTransaction.add(R.id.voice_assistant,vaf);
         fragmentTransaction.commit();
 
-        // 开启计时任务
-        TimerTask timerTask = new TimerTask(){
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Toast.makeText(MainActivity.this, "1s后延时任务执行了", Toast.LENGTH_SHORT).show();
-                        // TODO: 执行默认动作
-                    }
-                });
-            }
-        };
-        // 计时器等待一秒钟
-        mTimer.schedule(timerTask,1000);
+//        // 开启计时任务
+//        TimerTask timerTask = new TimerTask(){
+//            @Override
+//            public void run() {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        //Toast.makeText(MainActivity.this, "1s后延时任务执行了", Toast.LENGTH_SHORT).show();
+//                        // TODO: 执行默认动作
+//                    }
+//                });
+//            }
+//        };
+//        // 计时器等待一秒钟
+//        mTimer.schedule(timerTask,1000);
+
+        LocalDataBase.addAction("微信","扫码");
+        LocalDataBase.addAction("微信", "发起群聊");
+        LocalDataBase.addAction("微信", "添加好友");
+
     }
 
     private void mscInit (String serverUrl){
