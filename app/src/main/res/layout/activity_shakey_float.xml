@@ -6,12 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".ShakeyFloatActivity">
 
+
     <TextView
         android:id="@+id/textViewfloat"
         android:layout_width="30dp"
         android:layout_height="0dp"
         android:layout_marginTop="291dp"
         android:layout_marginEnd="182dp"
+        android:layout_marginBottom="138dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="333dp"
+        android:layout_height="275dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewfloat" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_i1"
+                android:layout_width="179dp"
+                android:layout_height="202dp"
+                android:text="Button" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button_i2"
+                    android:layout_width="112dp"
+                    android:layout_height="107dp"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button_i3"
+                    android:layout_width="117dp"
+                    android:layout_height="94dp"
+                    android:text="Button" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

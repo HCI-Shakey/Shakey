@@ -66,14 +66,6 @@ public class ShakeyFullActivity extends AppCompatActivity {
         });
     }
 
-    private void setUpButtons() {
-        Button buttoninit0 = findViewById(R.id.button_init0);
-        Button buttoninit1 = findViewById(R.id.button_init1);
-        Button buttoninit2 = findViewById(R.id.button_init2);
-        Button buttoninit3 = findViewById(R.id.button_init3);
-        Button buttoninit4 = findViewById(R.id.button_init4);
-    }
-
     @Override
     protected void onPause() {
         //资源释放
