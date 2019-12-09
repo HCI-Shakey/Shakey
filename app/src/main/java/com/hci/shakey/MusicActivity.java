@@ -27,6 +27,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 public class MusicActivity extends AppCompatActivity {
 
     boolean shaking = true;
@@ -34,7 +36,7 @@ public class MusicActivity extends AppCompatActivity {
     MusicActivity.ShakeMotionListener shakeMotionListener;
     private Context mContext = null;
     public View view;
-    public String init1,init2,init3;
+    private static HashMap<String,String> hashMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,10 +104,12 @@ public class MusicActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == GlobalIdentifiers.Music_reci && shaking == true) {
-            init1 = data.getStringExtra("init1");
-            init2 = data.getStringExtra("init2");
-            init3 = data.getStringExtra("init3");
-            Log.v(init1,"I'm in onResult");
+            String init1 = data.getStringExtra("init1");
+            String init2 = data.getStringExtra("init2");
+            String init3 = data.getStringExtra("init3");
+            hashMap.put("1",init1);
+            hashMap.put("2",init2);
+            hashMap.put("3",init3);
             showPopupWindow(view);
         }
     }
@@ -113,12 +117,11 @@ public class MusicActivity extends AppCompatActivity {
     private void showPopupWindow(View view) {
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.pop_window, null);
         Button button = (Button) contentView.findViewById(R.id.button1);
-        ((Button)button).setText(init1);
+        ((Button)button).setText(hashMap.get("1"));
         Button button2 = (Button) contentView.findViewById(R.id.button2);
-        Log.v(init2,"I'm here");
-        ((Button)button2).setText(init2);
+        ((Button)button2).setText(hashMap.get("2"));
         Button button3 = (Button) contentView.findViewById(R.id.button3);
-        ((Button)button3).setText(init3);
+        ((Button)button3).setText(hashMap.get("3"));
         TextView textView1 = (TextView) contentView.findViewById(R.id.textView);
         textView1.setText("to do");
         final PopupWindow popupWindow = new PopupWindow(contentView,
@@ -139,7 +142,13 @@ public class MusicActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "切换音乐播放状态",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
-                changePauseState();
+                if(hashMap.get("1") == "暂停/播放") {
+                    changePauseState();
+                } else if(hashMap.get("1") == "听歌识曲") {
+                    toResult1();
+                } else if(hashMap.get("1") == "获取推荐") {
+                    toResult2();
+                }
                 popupWindow.dismiss();
             }
         });
@@ -150,7 +159,13 @@ public class MusicActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "button_init2 is pressed",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
-                toResult1();
+                if(hashMap.get("2") == "暂停/播放") {
+                    changePauseState();
+                } else if(hashMap.get("2") == "听歌识曲") {
+                    toResult1();
+                } else if(hashMap.get("2") == "获取推荐") {
+                    toResult2();
+                }
                 popupWindow.dismiss();
             }
         });
@@ -161,7 +176,13 @@ public class MusicActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "button_init3 is pressed",Toast.LENGTH_SHORT).show();
                 //todo
                 shaking = false;
-                toResult2();
+                if(hashMap.get("3") == "暂停/播放") {
+                    changePauseState();
+                } else if(hashMap.get("3") == "听歌识曲") {
+                    toResult1();
+                } else if(hashMap.get("3") == "获取推荐") {
+                    toResult2();
+                }
                 popupWindow.dismiss();
             }
         });
@@ -170,6 +191,7 @@ public class MusicActivity extends AppCompatActivity {
 
     private boolean isPauseMusic = false;
 
+    //切换暂停和播放
     public void changePauseState() {
         AudioManager audioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
         if(audioManager.isMusicActive()) {
