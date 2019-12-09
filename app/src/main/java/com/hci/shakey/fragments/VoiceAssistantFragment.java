@@ -47,7 +47,7 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
     private static String TAG = VoiceAssistantFragment.class.getSimpleName();
     private OnFragmentInteractionListener mListener;
     private EditText mResultText;
-    private Button startBtn;
+    //private Button startBtn;
     private Toast mToast;
     private ImageView mIV;
     private String resultType = "json";
@@ -75,10 +75,13 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_voice_assistant, container, false);
         mResultText = v.findViewById(R.id.text_result);
-        startBtn = v.findViewById(R.id.start_btn);
-        startBtn.setOnClickListener(this);
+//        startBtn = v.findViewById(R.id.start_btn);
+//        startBtn.setOnClickListener(this);
         mIV = v.findViewById(R.id.microphone);
         mIV.getDrawable().setLevel(5400);
+
+        callBackValue.sendMessageValue("beginListen");
+
         return v;
     }
     /**
@@ -196,21 +199,41 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
             this.showTip( "创建对象失败，请确认 libmsc.so 放置正确，且有调用 createUtility 进行初始化" );
             return;
         }
-        switch (view.getId()) {
-            case R.id.start_btn :
-                buffer.setLength(0);
-                mResultText.setText(null);// 清空显示内容
-                mIatResults.clear();
-                setParam();
-                // 不显示听写对话框
-                if (mIat.isListening()) mIat.stopListening();
-                ret = mIat.startListening(mRecognizerListener);
-                if (ret != ErrorCode.SUCCESS) {
-                    showTip("听写失败,错误码：" + ret+",请点击网址https://www.xfyun.cn/document/error-code查询解决方案");
-                } else {
-                    showTip("开始听写");
-                }
-                break;
+//        switch (view.getId()) {
+//            case R.id.start_btn :
+//                buffer.setLength(0);
+//                mResultText.setText(null);// 清空显示内容
+//                mIatResults.clear();
+//                setParam();
+//                // 不显示听写对话框
+//                if (mIat.isListening()) mIat.stopListening();
+//                ret = mIat.startListening(mRecognizerListener);
+//                if (ret != ErrorCode.SUCCESS) {
+//                    showTip("听写失败,错误码：" + ret+",请点击网址https://www.xfyun.cn/document/error-code查询解决方案");
+//                } else {
+//                    showTip("开始听写");
+//                }
+//                break;
+//        }
+    }
+
+    public void startListening() {
+        if( null == mIat ){
+            // 创建单例失败，与 21001 错误为同样原因，参考 http://bbs.xfyun.cn/forum.php?mod=viewthread&tid=9688
+            this.showTip( "创建对象失败，请确认 libmsc.so 放置正确，且有调用 createUtility 进行初始化" );
+            return;
+        }
+        buffer.setLength(0);
+        //mResultText.setText(null);// 清空显示内容
+        mIatResults.clear();
+        setParam();
+        // 不显示听写对话框
+        if (mIat.isListening()) mIat.stopListening();
+        ret = mIat.startListening(mRecognizerListener);
+        if (ret != ErrorCode.SUCCESS) {
+            showTip("听写失败,错误码：" + ret+",请点击网址https://www.xfyun.cn/document/error-code查询解决方案");
+        } else {
+            showTip("开始听写");
         }
     }
 
@@ -225,6 +248,7 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
                     + " must implement OnFragmentInteractionListener");
         }
         callBackValue = (CallBackValue) getActivity();
+
     }
 
     private CallBackValue callBackValue;

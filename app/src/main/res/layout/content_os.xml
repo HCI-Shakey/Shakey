@@ -1,11 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".OSActivity"
-    tools:showIn="@layout/activity_os">
+    tools:showIn="@layout/activity_os"
+    android:gravity="center">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/button_shakey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Shakey"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/button_wechat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wechat"
+        android:textSize="15dp"
+        android:layout_margin="5dp"/>
+    <Button
+        android:id="@+id/button_music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="music"
+        android:textSize="15dp"
+        android:layout_margin="5dp"/>
+    <Button
+        android:id="@+id/button_alipay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alipay"
+        android:textSize="15dp"
+        android:layout_margin="5dp"/>
+    <Button
+        android:id="@+id/button_didi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Didi"
+        android:textSize="15dp"
+        android:layout_margin="5dp"/>
+    <Button
+        android:id="@+id/button_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Map"
+        android:textSize="15dp"
+        android:layout_margin="5dp"/>
+    <Button
+        android:id="@+id/button_lock_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOCKSCREEN"
+        android:textSize="15dp"
+        android:layout_margin="5dp"/>
+
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.hci.shakey.support;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class LocalDataBaseHelper extends SQLiteOpenHelper {
 

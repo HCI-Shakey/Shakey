@@ -8,4 +8,10 @@
     tools:context=".DidiActivity"
     tools:showIn="@layout/activity_didi">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/didi"
+        android:src="@drawable/didi" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

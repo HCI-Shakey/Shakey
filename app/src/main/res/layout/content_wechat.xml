@@ -8,4 +8,10 @@
     tools:context=".WechatActivity"
     tools:showIn="@layout/activity_wechat">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/wechat"
+        android:src="@drawable/wechat" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

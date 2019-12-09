@@ -16,7 +16,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class LocalDataBase {
-    protected static LocalDataBaseHelper mHelper;
+    public static LocalDataBaseHelper mHelper;
     protected static SQLiteDatabase db;
 
     protected static ContentValues values;
@@ -33,7 +33,8 @@ public class LocalDataBase {
 
     //需要初始化，放在MainActivity里
     public static void initialize(Context mContext) {
-        mHelper= LocalDataBaseHelper.instance(mContext);
+        mHelper = LocalDataBaseHelper.instance(mContext);
+        //Log.i("mHelp00er",""+mHelper);
         db = mHelper.getWritableDatabase();
     }
 
@@ -50,12 +51,12 @@ public class LocalDataBase {
             c.close();
         } else {
             c.close();
-        }
-        values.put(ENVIRONMENT, env);
-        values.put(ACTIONTODO, action);
-        values.put(TIMES, "1");
+            values.put(ENVIRONMENT, env);
+            values.put(ACTIONTODO, action);
+            values.put(TIMES, "1");
 
-        db.insert(TABLENAME,null,values);
+            db.insert(TABLENAME,null,values);
+        }
 
         db.setTransactionSuccessful();
         db.endTransaction();
