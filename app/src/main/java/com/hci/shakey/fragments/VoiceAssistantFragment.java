@@ -1,6 +1,7 @@
 package com.hci.shakey.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -18,7 +19,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.hci.shakey.DialActivity;
+import com.hci.shakey.FlashLightActivity;
+import com.hci.shakey.GlobalIdentifiers;
+import com.hci.shakey.MusicActivity;
 import com.hci.shakey.R;
+import com.hci.shakey.ShakeyFloatActivity;
+import com.hci.shakey.support.LocalDataBase;
 import com.hci.shakey.utils.JsonParser;
 import com.iflytek.cloud.ErrorCode;
 import com.iflytek.cloud.InitListener;
@@ -308,12 +315,21 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
 
     // 检查语音输入结果中是否有命令词
     private void commandInspect(String curstr) {
-        if (curstr.contains("打电话")) {
-
+        if (curstr.contains("听音乐")) {
+            Intent intent = new Intent(this.getActivity(), MusicActivity.class);
+            startActivity(intent);
+            this.getActivity().finish();
+            GlobalIdentifiers.Shakey_float = false;
+        } else if (curstr.contains("打电话")) {
+            Intent intent = new Intent(this.getActivity(), DialActivity.class);
+            startActivity(intent);
+            this.getActivity().finish();
+            GlobalIdentifiers.Shakey_float = false;
         } else if (curstr.contains("打开手电筒")) {
-
-        } else {
-
+            Intent intent = new Intent(this.getActivity(), FlashLightActivity.class);
+            startActivity(intent);
+            this.getActivity().finish();
+            GlobalIdentifiers.Shakey_float = false;
         }
     }
 }

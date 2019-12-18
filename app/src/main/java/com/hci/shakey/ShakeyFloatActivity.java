@@ -8,6 +8,8 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -59,6 +61,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
         Log.i("mHelper012",""+LocalDataBase.mHelper);
         GlobalIdentifiers.Shakey_float = true;
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_shakey_float);
 
         fragmentManager = getSupportFragmentManager();
@@ -73,6 +76,15 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
         Intent intent_reci = getIntent();
 
         env = intent_reci.getStringExtra("Environment");
+
+        if (env.contentEquals("LockScreenActivity") || env.contentEquals("OSActivity")) {
+            Log.i("bgbg","heere");
+
+            Resources res = getResources();
+            Drawable bg = res.getDrawable(R.mipmap.full_screen_background);
+            getWindow().getDecorView().setBackground(bg);
+        }
+
         List<String> inits = LocalDataBase.getRecommends(env);
         init1 = inits.get(0);
         init2 = inits.get(1);
@@ -179,6 +191,10 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                     case "MusicActivity":
                         solveMusic(init1);
                         break;
+                    case "LockScreenActivity":
+                        solveLockScreen(init1);
+                    case "OSActivity":
+                        solveOS(init1);
                     default:
                         break;
                 }
@@ -203,6 +219,10 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                     case "MusicActivity":
                         solveMusic(init2);
                         break;
+                    case "LockScreenActivity":
+                        solveLockScreen(init2);
+                    case "OSActivity":
+                        solveOS(init2);
                     default:
                         break;
                 }
@@ -227,6 +247,10 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                     case "MusicActivity":
                         solveMusic(init3);
                         break;
+                    case "LockScreenActivity":
+                        solveLockScreen(init3);
+                    case "OSActivity":
+                        solveOS(init3);
                     default:
                         break;
                 }
@@ -240,6 +264,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 
     public void solveWeChat(String ope) {
         if(ope.contentEquals("扫一扫")) {
+            LocalDataBase.updateActionTimes(env, ope);
             try {
                 Intent intent = new Intent();
                 intent.setComponent(new ComponentName("com.tencent.mm", "com.tencent.mm.ui.LauncherUI"));
@@ -247,10 +272,12 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                 intent.setFlags(FLAG_RECEIVER_FOREGROUND | FLAG_ACTIVITY_CLEAR_TOP);//335544320
                 intent.setAction("android.intent.action.VIEW");
                 startActivity(intent);
+                GlobalIdentifiers.Shakey_float = false;
                 this.finish();
             } catch (Exception e) {
             }
         } else  if(ope.contentEquals("返回上一界面")) {
+            LocalDataBase.updateActionTimes(env, ope);
             try {
                 Intent intent = new Intent();
                 ComponentName cmp=new ComponentName("com.tencent.mm","com.tencent.mm.ui.LauncherUI");
@@ -259,6 +286,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setComponent(cmp);
                 startActivity(intent);
+                GlobalIdentifiers.Shakey_float = false;
                 this.finish();
             } catch (Exception e) {
             }
@@ -267,12 +295,16 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
             intent.putExtra("src",R.drawable.wc_add);
             intent.setClass(this, ResultActivity.class);
             startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            GlobalIdentifiers.Shakey_float = false;
             this.finish();
         }
     }
 
     public void solveAlipay(String ope) {
         if(ope.contentEquals("扫一扫")) {
+            LocalDataBase.updateActionTimes(env, ope);
+            GlobalIdentifiers.Shakey_float = false;
             try {
                 //利用Intent打开支付宝
                 //支付宝跳过开启动画打开扫码和付款码的urlscheme分别是：
@@ -285,6 +317,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                 //若无法正常跳转，在此进行错误处理
             }
         } else  if(ope.contentEquals("出示付款码")) {
+            GlobalIdentifiers.Shakey_float = false;
             try {
                 //利用Intent打开支付宝
                 //支付宝跳过开启动画打开扫码和付款码的urlscheme分别是：
@@ -297,10 +330,12 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                 //若无法正常跳转，在此进行错误处理
             }
         } else if(ope.contentEquals("待开发")) {
+            GlobalIdentifiers.Shakey_float = false;
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.ali_fkm);
             intent.setClass(this, ResultActivity.class);
             startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
             this.finish();
         }
     }
@@ -311,18 +346,24 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
             intent.putExtra("src",R.drawable.dd_dc);
             intent.setClass(this, ResultActivity.class);
             startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            GlobalIdentifiers.Shakey_float = false;
             this.finish();
         } else  if(ope.contentEquals("钱包")) {
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.dd_qb);
             intent.setClass(this, ResultActivity.class);
             startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            GlobalIdentifiers.Shakey_float = false;
             this.finish();
         } else if(ope.contentEquals("待开发")) {
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.dd_dc);
             intent.setClass(this, ResultActivity.class);
             startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            GlobalIdentifiers.Shakey_float = false;
             this.finish();
         }
     }
@@ -333,25 +374,33 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
             intent.putExtra("src",R.drawable.gd_sb);
             intent.setClass(this, ResultActivity.class);
             startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            GlobalIdentifiers.Shakey_float = false;
             this.finish();
         } else  if(ope.contentEquals("导航回家")) {
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.gd_hj);
             intent.setClass(this, ResultActivity.class);
             startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            GlobalIdentifiers.Shakey_float = false;
             this.finish();
         } else if(ope.contentEquals("待开发")) {
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.gd_home);
             intent.setClass(this, ResultActivity.class);
             startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            GlobalIdentifiers.Shakey_float = false;
             this.finish();
         }
     }
 
     public void solveMusic(String ope) {
         if(ope.contentEquals("暂停/播放")) {
+            GlobalIdentifiers.Shakey_float = false;
             boolean isPauseMusic = false;
+            LocalDataBase.updateActionTimes(env, ope);
             AudioManager audioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
             if(audioManager.isMusicActive()) {
                 audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
@@ -363,19 +412,92 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                 isPauseMusic = false;
             }
         } else  if(ope.contentEquals("听歌识曲")) {
+            GlobalIdentifiers.Shakey_float = false;
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.wyy_tgsq);
             intent.setClass(this, ResultActivity.class);
             startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
             this.finish();
         } else if(ope.contentEquals("获取推荐")) {
+            GlobalIdentifiers.Shakey_float = false;
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.wyy_tj);
             intent.setClass(this, ResultActivity.class);
             startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
             this.finish();
         }
     }
+
+    public void solveLockScreen(String ope) {
+        if(ope.contentEquals("微信扫一扫")) {
+            GlobalIdentifiers.Shakey_float = false;
+            Intent intent = new Intent(ShakeyFloatActivity.this, WechatActivity.class);
+            startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        } else if(ope.contentEquals("音乐")) {
+            GlobalIdentifiers.Shakey_float = false;
+            Intent intent = new Intent(ShakeyFloatActivity.this, MusicActivity.class);
+            startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        } else if(ope.contentEquals("打开手电筒")) {
+            GlobalIdentifiers.Shakey_float = false;
+            Intent intent = new Intent(ShakeyFloatActivity.this, FlashLightActivity.class);
+            startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        } else if(ope.contentEquals("打开支付宝")) {
+            GlobalIdentifiers.Shakey_float = false;
+            Intent intent = new Intent(ShakeyFloatActivity.this, AlipayActivity.class);
+            startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        } else if(ope.contentEquals("滴滴打车")) {
+            GlobalIdentifiers.Shakey_float = false;
+            Intent intent = new Intent(ShakeyFloatActivity.this, DidiActivity.class);
+            startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        }
+    }
+
+    public void solveOS(String ope) {
+        if(ope.contentEquals("微信扫一扫")) {
+            GlobalIdentifiers.Shakey_float = false;
+            Intent intent = new Intent(ShakeyFloatActivity.this, WechatActivity.class);
+            startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        } else if(ope.contentEquals("音乐")) {
+            GlobalIdentifiers.Shakey_float = false;
+            Intent intent = new Intent(ShakeyFloatActivity.this, MusicActivity.class);
+            startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        } else if(ope.contentEquals("打开手电筒")) {
+            GlobalIdentifiers.Shakey_float = false;
+            Intent intent = new Intent(ShakeyFloatActivity.this, FlashLightActivity.class);
+            startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        } else if(ope.contentEquals("打开支付宝")) {
+            GlobalIdentifiers.Shakey_float = false;
+            Intent intent = new Intent(ShakeyFloatActivity.this, AlipayActivity.class);
+            startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        } else if(ope.contentEquals("滴滴打车")) {
+            GlobalIdentifiers.Shakey_float = false;
+            Intent intent = new Intent(ShakeyFloatActivity.this, DidiActivity.class);
+            startActivity(intent);
+            LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        }
+    }
+
 
     @Override
     public void onFragmentInteraction(Uri uri) {
@@ -390,5 +512,11 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
         } else if (message.contentEquals("beginListen")) {
             vaf.startListening();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        GlobalIdentifiers.Shakey_float = false;
     }
 }

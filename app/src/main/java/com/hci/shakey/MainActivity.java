@@ -51,6 +51,20 @@ public class MainActivity extends AppCompatActivity {
         LocalDataBase.addAction("AlipayActivity", "出示付款码");
         LocalDataBase.addAction("AlipayActivity", "待开发");
 
+        LocalDataBase.addAction("LockScreenActivity","微信扫一扫");
+        LocalDataBase.addAction("LockScreenActivity", "拍照");
+        LocalDataBase.addAction("LockScreenActivity", "音乐");
+        LocalDataBase.addAction("LockScreenActivity", "打开手电筒");
+        LocalDataBase.addAction("LockScreenActivity", "打开支付宝");
+        LocalDataBase.addAction("LockScreenActivity", "滴滴打车");
+
+        LocalDataBase.addAction("OSActivity","微信扫一扫");
+        LocalDataBase.addAction("OSActivity", "拍照");
+        LocalDataBase.addAction("OSActivity", "音乐");
+        LocalDataBase.addAction("OSActivity", "打开手电筒");
+        LocalDataBase.addAction("OSActivity", "打开支付宝");
+        LocalDataBase.addAction("OSActivity", "滴滴打车");
+
 
         Button buttonEnter = findViewById(R.id.button_enter);
         buttonEnter.setOnClickListener(new View.OnClickListener() {

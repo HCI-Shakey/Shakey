@@ -67,8 +67,7 @@ public class LocalDataBase {
         db=mHelper.getWritableDatabase();
         //db.beginTransaction();
         Cursor c = db.query(TABLENAME,null, "environment = ? and actiontodo = ?",new String[]{env, action},null,null,null);
-        if (c.moveToFirst()){
-            c.close();
+        if (c.moveToFirst()) {
             String curTimesStr = c.getString(c.getColumnIndex(TIMES));
             Integer curTimes = Integer.valueOf(curTimesStr);
             curTimes = curTimes + 1;
@@ -77,6 +76,7 @@ public class LocalDataBase {
             values.clear();
             values.put(TIMES, curTimesStr);
             db.update(TABLENAME, values, "environment = ? and actiontodo = ?",new String[]{env, action});
+            c.close();
 
         } else {
             c.close();
@@ -114,10 +114,10 @@ public class LocalDataBase {
             @Override
             public int compare(ActionTimesPair o1, ActionTimesPair o2) {
                 if(o1.times >= o2.times) {
-                    return 1;
+                    return -1;
                 }
                 else {
-                    return -1;
+                    return 1;
                 }
             }
         });

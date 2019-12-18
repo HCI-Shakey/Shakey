@@ -57,7 +57,7 @@ public class LockScreenActivity extends AppCompatActivity {
             if (x>19 || y>19 || z>19) {
                 shaking = true;
                 vibrate(500);
-                Intent intent = new Intent(LockScreenActivity.this, ShakeyFullActivity.class);
+                Intent intent = new Intent(LockScreenActivity.this, ShakeyFloatActivity.class);
                 intent.putExtra("Environment", "LockScreenActivity");
                 startActivityForResult(intent, GlobalIdentifiers.CALL_SHAKEY);
             }

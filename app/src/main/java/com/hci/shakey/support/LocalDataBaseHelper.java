@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class LocalDataBaseHelper extends SQLiteOpenHelper {
 
-    private  static final String DB_NAME = "ShakeyAction";
+    private  static final String DB_NAME = "ShakeyAction2";
     private static LocalDataBaseHelper instance = null;
     private static final int DB_VERSION = 2;
     private static final String CREATE_TABLE = "create table if not exists " +
