@@ -1,84 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="top"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".OSActivity"
-    tools:showIn="@layout/activity_os"
-    android:gravity="top">
+    tools:showIn="@layout/activity_os">
 
 
     <LinearLayout
+        android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="#80FFFFFF">
+
         <Button
             android:id="@+id/button_shakey"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_margin="15dp"
-            android:background="@drawable/shake"/>
+            android:background="@drawable/shake" />
+
         <Button
             android:id="@+id/button_wechat"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_margin="15dp"
-            android:background="@drawable/wechat"/>
+            android:background="@drawable/wechat" />
+
         <Button
             android:id="@+id/button_music"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_margin="15dp"
-            android:background="@drawable/music"/>
+            android:background="@drawable/music" />
+
         <Button
             android:id="@+id/button_alipay"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_margin="15dp"
-            android:background="@drawable/alipay"/>
+            android:background="@drawable/alipay" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/first"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_alignParentTop="true">
+
         <Button
             android:id="@+id/button_didi"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_margin="15dp"
-            android:background="@drawable/didi"/>
+            android:background="@drawable/didi" />
+
         <Button
             android:id="@+id/button_map"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_margin="15dp"
-            android:background="@drawable/map"/>
+            android:background="@drawable/map" />
+
         <Button
             android:id="@+id/button_lock_screen"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_margin="15dp"
-            android:background="@drawable/lockscreen"/>
+            android:background="@drawable/lockscreen" />
+
         <Button
             android:id="@+id/button_call"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_margin="15dp"
-            android:background="@drawable/call"/>
+            android:background="@drawable/call" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/second"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@id/first">
 
         <Button
             android:id="@+id/button_light"
@@ -88,5 +103,5 @@
             android:background="@drawable/light" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
 
