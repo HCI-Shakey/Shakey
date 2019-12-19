@@ -24,6 +24,7 @@ public class LockScreenActivity extends AppCompatActivity {
     boolean shaking;
     SensorManager sensorManager;
     LockScreenActivity.ShakeMotionListener shakeMotionListener;
+    Button button;
 
 
     @Override
@@ -34,7 +35,7 @@ public class LockScreenActivity extends AppCompatActivity {
         shaking = false;
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new LockScreenActivity.ShakeMotionListener();
-        final Button button = findViewById(R.id.button_notice);
+        button = findViewById(R.id.button_notice);
         button.setVisibility(View.GONE);
         button.setText("null");
         Button buttonShowCall = findViewById(R.id.button_show_call);
@@ -69,6 +70,11 @@ public class LockScreenActivity extends AppCompatActivity {
                 vibrate(500);
                 Intent intent = new Intent(LockScreenActivity.this, ShakeyFloatActivity.class);
                 intent.putExtra("Environment", "LockScreenActivity");
+                if (button.getText().equals("您有一个未接来电")) {
+                    intent.putExtra("Notice", "您有一个未接来电");
+                } else if (button.getText().equals("您有一条新的微信消息")) {
+                    intent.putExtra("Notice", "您有一条新的微信消息");
+                }
                 startActivityForResult(intent, GlobalIdentifiers.CALL_SHAKEY);
             }
         }

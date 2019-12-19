@@ -53,9 +53,13 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
     private Timer mTimer; // 按钮被点击，声音命令中有输入的时候，计时器会被取消
     TimerTask timerTask1;
 
+    boolean hasNotice = false;
+    String notice;
+
     Button button1;
     Button button2;
     Button button3;
+    Button noticeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +71,10 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_shakey_float);
+
+        noticeButton = findViewById(R.id.button_notice_float);
+        noticeButton.setVisibility(View.GONE);
+        noticeButton.setOnClickListener(this);
 
         fragmentManager = getSupportFragmentManager();
         /*FragmentManager要管理fragment（添加，替换以及其他的执行动作）
@@ -90,12 +98,26 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
             getWindow().getDecorView().getBackground().setAlpha(200);
         }
 
+        notice = intent_reci.getStringExtra("Notice");
+
+        if (notice != null) {
+            if (notice.contentEquals("您有一条新的微信消息")) {
+                noticeButton.setText("读取新的微信消息");
+                noticeButton.setVisibility(View.VISIBLE);
+                hasNotice = true;
+            } else if (notice.contentEquals("您有一个未接来电")) {
+                noticeButton.setText("查看未接来电");
+                noticeButton.setVisibility(View.VISIBLE);
+                hasNotice = true;
+            }
+        }
+
         List<String> inits = LocalDataBase.getRecommends(env);
         init1 = inits.get(0);
         init2 = inits.get(1);
         init3 = inits.get(2);
 
-        view =(TextView) findViewById(R.id.textViewfloat);
+
 //        switch (env){
 //            case "WechatActivity":
 ////                List<String> inits = LocalDataBase.getRecommends(env);
@@ -165,7 +187,8 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                     public void run() {
                         //Toast.makeText(MainActivity.this, "1s后延时任务执行了", Toast.LENGTH_SHORT).show();
                         // TODO: 执行默认动作
-                        button1.performClick();
+                        if (hasNotice) noticeButton.performClick();
+                        else button1.performClick();
                     }
                 });
             }
@@ -263,12 +286,16 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                 GlobalIdentifiers.Shakey_float = false;
                 finish();
                 break;
+            case R.id.button_notice_float:
+                solveNotice(notice);
+                break;
             default:
                 break;
         }
     }
 
     public void solveWeChat(String ope) {
+        mTimer.cancel();
         if(ope.contentEquals("扫一扫")) {
             LocalDataBase.updateActionTimes(env, ope);
             try {
@@ -308,6 +335,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void solveAlipay(String ope) {
+        mTimer.cancel();
         if(ope.contentEquals("扫一扫")) {
             LocalDataBase.updateActionTimes(env, ope);
             GlobalIdentifiers.Shakey_float = false;
@@ -347,6 +375,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void solveDidi(String ope) {
+        mTimer.cancel();
         if(ope.contentEquals("打车")) {
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.dd_dc);
@@ -375,6 +404,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void solveGaoDe(String ope) {
+        mTimer.cancel();
         if(ope.contentEquals("导航上班")) {
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.gd_sb);
@@ -403,6 +433,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void solveMusic(String ope) {
+        mTimer.cancel();
         if(ope.contentEquals("暂停/播放")) {
             GlobalIdentifiers.Shakey_float = false;
             boolean isPauseMusic = false;
@@ -437,6 +468,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void solveLockScreen(String ope) {
+        mTimer.cancel();
         if(ope.contentEquals("微信扫一扫")) {
             GlobalIdentifiers.Shakey_float = false;
             Intent intent = new Intent(ShakeyFloatActivity.this, WechatActivity.class);
@@ -471,6 +503,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void solveOS(String ope) {
+        mTimer.cancel();
         if(ope.contentEquals("微信扫一扫")) {
             GlobalIdentifiers.Shakey_float = false;
             Intent intent = new Intent(ShakeyFloatActivity.this, WechatActivity.class);
@@ -500,6 +533,19 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
             Intent intent = new Intent(ShakeyFloatActivity.this, DidiActivity.class);
             startActivity(intent);
             LocalDataBase.updateActionTimes(env, ope);
+            this.finish();
+        }
+    }
+
+    public void solveNotice(String nt) {
+        mTimer.cancel();
+        if (nt.contentEquals("您有一条新的微信消息")) {
+            Intent intent = new Intent(ShakeyFloatActivity.this, WechatActivity.class);
+            startActivity(intent);
+            this.finish();
+        } else if (nt.contentEquals("您有一个未接来电")) {
+            Intent intent = new Intent(ShakeyFloatActivity.this, DialActivity.class);
+            startActivity(intent);
             this.finish();
         }
     }
