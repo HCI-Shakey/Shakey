@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Vibrator;
 import android.view.View;
+import android.widget.Button;
 
 public class LockScreenActivity extends AppCompatActivity {
 
@@ -29,22 +30,31 @@ public class LockScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock_screen);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         shaking = false;
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         shakeMotionListener = new LockScreenActivity.ShakeMotionListener();
+        final Button button = findViewById(R.id.button_notice);
+        button.setVisibility(View.GONE);
+        button.setText("null");
+        Button buttonShowCall = findViewById(R.id.button_show_call);
+        Button buttonShowWechat = findViewById(R.id.button_show_wechat);
+        buttonShowCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button.setText("您有一个未接来电");
+                button.setVisibility(View.VISIBLE);
+                //TODO 给后台传消息
+            }
+        });
+        buttonShowWechat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button.setText("您有一条新的微信消息");
+                button.setVisibility(View.VISIBLE);
+                //TODO 给后台传消息
+            }
+        });
     }
 
     private class ShakeMotionListener implements SensorEventListener {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,4 +8,61 @@
     tools:context=".LockScreenActivity"
     tools:showIn="@layout/activity_lock_screen">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="10:21"
+        android:textSize="100dp"
+        android:textColor="#FFF"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="70dp"/>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="12月8日 星期日"
+        android:textSize="25dp"
+        android:textColor="#FFF"
+        android:layout_below="@id/time"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/other"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="乙亥年冬月十三"
+        android:textSize="20dp"
+        android:textColor="#FFF"
+        android:layout_below="@id/date"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/button_notice"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="未接来电"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/other"
+        android:background="#80FFFFFF"/>
+    <Button
+        android:id="@+id/button_show_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="call"
+        android:background="#80FFFFFF"
+        android:layout_margin="10dp"/>
+    <Button
+        android:id="@+id/button_show_wechat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="wechat"
+        android:background="#80FFFFFF"
+        android:layout_margin="10dp"/>
+
+
+</RelativeLayout>
