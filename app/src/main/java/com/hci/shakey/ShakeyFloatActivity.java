@@ -51,7 +51,11 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
     VoiceAssistantFragment vaf;
 
     private Timer mTimer; // 按钮被点击，声音命令中有输入的时候，计时器会被取消
-    private Timer mTimer2;
+    TimerTask timerTask1;
+
+    Button button1;
+    Button button2;
+    Button button3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +85,9 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
             Log.i("bgbg","heere");
 
             Resources res = getResources();
-            Drawable bg = res.getDrawable(R.mipmap.full_screen_background);
+            Drawable bg = res.getDrawable(R.mipmap.tech_background);
             getWindow().getDecorView().setBackground(bg);
+            getWindow().getDecorView().getBackground().setAlpha(200);
         }
 
         List<String> inits = LocalDataBase.getRecommends(env);
@@ -140,11 +145,11 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 //            default:
 //                break;
 //        }
-        Button button1 = (Button) findViewById(R.id.button_i1);
+        button1 = (Button) findViewById(R.id.button_i1);
         ((Button)button1).setText(init1);
-        Button button2 = (Button) findViewById(R.id.button_i2);
+        button2 = (Button) findViewById(R.id.button_i2);
         ((Button)button2).setText(init2);
-        Button button3 = (Button) findViewById(R.id.button_i3);
+        button3 = (Button) findViewById(R.id.button_i3);
         ((Button)button3).setText(init3);
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
@@ -152,7 +157,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
 
         // 开启计时任务
-        TimerTask timerTask1 = new TimerTask(){
+        timerTask1 = new TimerTask(){
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
@@ -160,6 +165,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
                     public void run() {
                         //Toast.makeText(MainActivity.this, "1s后延时任务执行了", Toast.LENGTH_SHORT).show();
                         // TODO: 执行默认动作
+                        button1.performClick();
                     }
                 });
             }

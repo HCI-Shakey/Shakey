@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="transparent">#00000000</color>
+    <color name="lightblue">#add8e6</color> <!-- 亮蓝色 -->
+    <color name="lightskyblue">#87cefa</color> <!-- 亮天蓝色 -->
 </resources>

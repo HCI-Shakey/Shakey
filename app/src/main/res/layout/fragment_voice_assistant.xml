@@ -27,7 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:hint="Hello, 我是Shakey"
-            android:textSize="20sp" />
+            android:textColorHint="@color/lightblue"
+            android:textSize="20sp"
+            android:textColor="@color/lightskyblue"/>
 
 <!--        <Button-->
 <!--            android:id="@+id/start_btn"-->
