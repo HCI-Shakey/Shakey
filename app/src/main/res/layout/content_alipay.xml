@@ -9,9 +9,10 @@
     tools:showIn="@layout/activity_alipay">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/alipay"
-        android:src="@drawable/alipay" />
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/alipay_home_page" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
