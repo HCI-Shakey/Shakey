@@ -60,7 +60,7 @@ public class AlipayActivity extends AppCompatActivity {
             float x = Math.abs(event.values[0]);
             float y = Math.abs(event.values[1]);
             float z = Math.abs(event.values[2]);
-            if (x>19 || y>19 || z>19) {
+            if (x>60 && y<40) {
                 shaking = true;
                 vibrate(500);
                 Intent intent = new Intent(AlipayActivity.this, ShakeyFloatActivity.class);

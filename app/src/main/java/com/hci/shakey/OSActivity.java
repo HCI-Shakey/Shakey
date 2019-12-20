@@ -120,7 +120,7 @@ public class OSActivity extends AppCompatActivity {
             float x = Math.abs(event.values[0]);
             float y = Math.abs(event.values[1]);
             float z = Math.abs(event.values[2]);
-            if (x>50 && y<30) {
+            if (x>60 && y<40) {
                 shaking = true;
                 vibrate(500);
                 Intent intent = new Intent(OSActivity.this, ShakeyFloatActivity.class);

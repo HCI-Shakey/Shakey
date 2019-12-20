@@ -67,7 +67,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
             finish();
         }
         Log.i("mHelper012",""+LocalDataBase.mHelper);
-        GlobalIdentifiers.Shakey_float = true;
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_shakey_float);
@@ -195,8 +195,11 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
         };
 
         // 计时器等待1200ms, 执行默认动作
-        mTimer = new Timer();
-        mTimer.schedule(timerTask1,1300);
+        if (GlobalIdentifiers.Shakey_float == false) {
+            mTimer = new Timer();
+            mTimer.schedule(timerTask1,1300);
+            GlobalIdentifiers.Shakey_float = true;
+        }
 
     }
     @Override
