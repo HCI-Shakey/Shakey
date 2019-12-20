@@ -196,7 +196,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 
         // 计时器等待1200ms, 执行默认动作
         mTimer = new Timer();
-        mTimer.schedule(timerTask1,1000);
+        mTimer.schedule(timerTask1,1300);
 
     }
     @Override
@@ -540,10 +540,12 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
     public void solveNotice(String nt) {
         mTimer.cancel();
         if (nt.contentEquals("您有一条新的微信消息")) {
+            GlobalIdentifiers.Shakey_float = false;
             Intent intent = new Intent(ShakeyFloatActivity.this, WechatActivity.class);
             startActivity(intent);
             this.finish();
         } else if (nt.contentEquals("您有一个未接来电")) {
+            GlobalIdentifiers.Shakey_float = false;
             Intent intent = new Intent(ShakeyFloatActivity.this, DialActivity.class);
             startActivity(intent);
             this.finish();

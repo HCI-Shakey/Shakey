@@ -45,6 +45,8 @@ public class OSActivity extends AppCompatActivity {
         Button buttonDidi = findViewById(R.id.button_didi);
         Button buttonMap = findViewById(R.id.button_map);
         Button buttonLockScreen = findViewById(R.id.button_lock_screen);
+        Button buttonCall = findViewById(R.id.button_call);
+        Button buttonLight = findViewById(R.id.button_light);
 
         buttonShakey.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +97,20 @@ public class OSActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        buttonCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OSActivity.this, DialActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonLight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OSActivity.this, FlashLightActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private class ShakeMotionListener implements SensorEventListener {
@@ -104,7 +120,7 @@ public class OSActivity extends AppCompatActivity {
             float x = Math.abs(event.values[0]);
             float y = Math.abs(event.values[1]);
             float z = Math.abs(event.values[2]);
-            if (x>19 || y>19 || z>19) {
+            if (x>50 && y<30) {
                 shaking = true;
                 vibrate(500);
                 Intent intent = new Intent(OSActivity.this, ShakeyFloatActivity.class);
