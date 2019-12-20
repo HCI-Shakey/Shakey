@@ -178,7 +178,7 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
         @Override
         public void onVolumeChanged(int volume, byte[] data) {
             // 音量改变说明有语音输入
-            if (volume > 0) {
+            if (volume > 10) {
                 callBackValue.sendMessageValue("hasSoundAction");
             }
             showTip("当前正在说话，音量大小：" + volume);
