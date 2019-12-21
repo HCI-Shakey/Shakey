@@ -3,6 +3,8 @@
     package="com.hci.shakey">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission." />
 
     <application
         android:allowBackup="true"

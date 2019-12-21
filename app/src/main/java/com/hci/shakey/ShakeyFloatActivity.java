@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -21,7 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
-import android.widget.TextView;
+import androidx.cardview.widget.CardView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -68,6 +69,8 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
         }
         Log.i("mHelper012",""+LocalDataBase.mHelper);
 
+        mContext = this;
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_shakey_float);
@@ -97,6 +100,16 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
             getWindow().getDecorView().setBackground(bg);
             getWindow().getDecorView().getBackground().setAlpha(200);
         }
+
+//        CardView tv1 = findViewById(R.id.cardView2);
+//        Resources res2 = getResources();
+//        Drawable bg = res2.getDrawable(R.mipmap.shakey_card_background);
+//        tv1.setBackground(bg);
+//        tv1.getBackground().setAlpha(220);
+//
+//        CardView tv2 = findViewById(R.id.cardView3);
+//        tv2.setBackground(bg);
+//        tv2.getBackground().setAlpha(220);
 
         notice = intent_reci.getStringExtra("Notice");
 
@@ -299,6 +312,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 
     public void solveWeChat(String ope) {
         mTimer.cancel();
+        vaf.stopListening();
         if(ope.contentEquals("扫一扫")) {
             LocalDataBase.updateActionTimes(env, ope);
             try {
@@ -339,6 +353,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 
     public void solveAlipay(String ope) {
         mTimer.cancel();
+        vaf.stopListening();
         if(ope.contentEquals("扫一扫")) {
             LocalDataBase.updateActionTimes(env, ope);
             GlobalIdentifiers.Shakey_float = false;
@@ -379,6 +394,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 
     public void solveDidi(String ope) {
         mTimer.cancel();
+        vaf.stopListening();
         if(ope.contentEquals("打车")) {
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.dd_dc);
@@ -408,6 +424,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 
     public void solveGaoDe(String ope) {
         mTimer.cancel();
+        vaf.stopListening();
         if(ope.contentEquals("导航上班")) {
             Intent intent = new Intent();
             intent.putExtra("src",R.drawable.gd_sb);
@@ -437,6 +454,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 
     public void solveMusic(String ope) {
         mTimer.cancel();
+        vaf.stopListening();
         if(ope.contentEquals("暂停/播放")) {
             GlobalIdentifiers.Shakey_float = false;
             boolean isPauseMusic = false;
@@ -472,6 +490,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 
     public void solveLockScreen(String ope) {
         mTimer.cancel();
+        vaf.stopListening();
         if(ope.contentEquals("微信扫一扫")) {
             GlobalIdentifiers.Shakey_float = false;
             Intent intent = new Intent(ShakeyFloatActivity.this, WechatActivity.class);
@@ -507,6 +526,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 
     public void solveOS(String ope) {
         mTimer.cancel();
+        vaf.stopListening();
         if(ope.contentEquals("微信扫一扫")) {
             GlobalIdentifiers.Shakey_float = false;
             Intent intent = new Intent(ShakeyFloatActivity.this, WechatActivity.class);
@@ -542,6 +562,7 @@ public class ShakeyFloatActivity extends AppCompatActivity implements View.OnCli
 
     public void solveNotice(String nt) {
         mTimer.cancel();
+        vaf.stopListening();
         if (nt.contentEquals("您有一条新的微信消息")) {
             GlobalIdentifiers.Shakey_float = false;
             Intent intent = new Intent(ShakeyFloatActivity.this, WechatActivity.class);

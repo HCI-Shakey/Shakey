@@ -12,24 +12,27 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="bottom"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="0dp">
 
     <Button
         android:id="@+id/button_notice_float"
         android:layout_width="280dp"
         android:layout_height="80dp"
         android:text="未接来电"
+        android:background="@drawable/button_circle_corner"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_below="@id/other"
+        android:textColor="#ffffffff"
         android:textSize="20dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="333dp"
-        android:layout_height="275dp"
+        android:layout_height="170dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
@@ -37,22 +40,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="parent">
 
-        >
+        <ImageView
+            android:layout_width = "fill_parent"
+            android:layout_height = "fill_parent"
+            android:src = "@mipmap/shakey_card_background"
+            android:alpha="0.9"
+            android:scaleType="fitXY" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="15dp">
 
             <Button
                 android:id="@+id/button_i1"
                 android:layout_width="179dp"
-                android:layout_height="202dp"
-                android:layout_marginLeft="20dp"
+                android:layout_height="142dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
                 android:text="Button"
+                android:background="@drawable/button_circle_corner"
+                android:textColor="#ffffffff"
                 android:textSize="20dp"/>
 
             <LinearLayout
@@ -63,15 +75,20 @@
                 <Button
                     android:id="@+id/button_i2"
                     android:layout_width="112dp"
-                    android:layout_height="107dp"
+                    android:layout_height="77dp"
                     android:text="Button"
+                    android:textColor="#ffffffff"
+                    android:background="@drawable/button_circle_corner"
+                    android:layout_marginBottom="10dp"
                     android:textSize="15dp"/>
 
                 <Button
                     android:id="@+id/button_i3"
-                    android:layout_width="117dp"
-                    android:layout_height="94dp"
+                    android:layout_width="112dp"
+                    android:layout_height="54dp"
                     android:text="Button"
+                    android:background="@drawable/button_circle_corner"
+                    android:textColor="#ffffffff"
                     android:textSize="15dp"/>
 
             </LinearLayout>
@@ -81,11 +98,34 @@
 
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="333dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width = "fill_parent"
+            android:layout_height = "fill_parent"
+            android:src = "@mipmap/shakey_card_background"
+            android:alpha="0.9"
+            android:scaleType="fitXY" />
+
     <FrameLayout
         android:id="@+id/voice_assistant"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="3"></FrameLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

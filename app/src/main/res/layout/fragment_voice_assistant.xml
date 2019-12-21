@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:hint="Hello, 我是Shakey"
+            android:hint="请问需要什么帮助？"
             android:textColorHint="@color/lightblue"
             android:textSize="20sp"
             android:textColor="@color/lightskyblue"/>

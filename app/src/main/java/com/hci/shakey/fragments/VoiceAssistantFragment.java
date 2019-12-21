@@ -244,6 +244,12 @@ public class VoiceAssistantFragment extends Fragment implements View.OnClickList
         }
     }
 
+    public void stopListening() {
+        if (mIat.isListening()) {
+            mIat.stopListening();
+        }
+    }
+
 
     @Override
     public void onAttach(Context context) {

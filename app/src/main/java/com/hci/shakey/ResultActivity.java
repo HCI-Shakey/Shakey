@@ -27,17 +27,6 @@ public class ResultActivity extends AppCompatActivity{
         Intent intent = this.getIntent();
         ImageView imv = (ImageView)findViewById(R.id.empty);
         imv.setImageResource(intent.getIntExtra("src",R.drawable.wechat));
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         shaking = false;
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
